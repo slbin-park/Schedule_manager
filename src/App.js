@@ -3,10 +3,11 @@ import { useState } from 'react';
 import moment from 'moment';
 import pr_data from './data/data.json'
 import './assets/css/calendar.scss'
+import './assets/css/modal.scss'
 const App = () => {
 
   const [getMoment, setMoment] = useState(moment());
-
+  const [modal, setmodal] = useState(false);
   const today = getMoment;
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
@@ -53,10 +54,12 @@ const App = () => {
 
   return (
     <div className="App">
+      {modal ? <Modal setmodal={setmodal}></Modal> : ''}
       <div className="calendar_head">
         <button className='calendar_button' onClick={() => { setMoment(getMoment.clone().subtract(1, 'month')) }} >이전달</button>
         <div className='calendar_head_text'>{today.format('YYYY 년 MM 월')}</div>
         <button className='calendar_button' onClick={() => { setMoment(getMoment.clone().add(1, 'month')) }} >다음달</button>
+        <button onClick={() => setmodal(!modal)}>모달 온</button>
       </div>
       <div className='calendar_body'>
         <div className='calendar_body_box'>
@@ -83,6 +86,25 @@ function Show_event({ days }) {
   )
 }
 
+function Modal({ setmodal }) {
+  return (
+    <div className='modal' onClick={() => {
+      setmodal(false)
+      console.log('위에누름')
+    }}>
+      <div >
+        <div className='modal_div' onClick={() => {
+          setmodal(true)
+          console.log('누름')
+        }}>
+          <div className='modal_title'>
+            제목입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 function Day_kor() {
   return (
     <>
@@ -112,3 +134,4 @@ function Day_kor() {
     </>
   )
 }
+
