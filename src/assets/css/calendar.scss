@@ -60,6 +60,14 @@ html, body {
                 height:100%;
                 text-align: initial;
                 font-size : 2vw;
+                .calendar_body_days_event{
+                    font-size: 15px;
+                    background: gray;
+                    color: white;
+                    border-radius: 5px;
+                    padding: 2px;
+                    margin: 1px;
+                }
                 .calendar_body_day{
                     display: flex;
                     justify-content: flex-start;
