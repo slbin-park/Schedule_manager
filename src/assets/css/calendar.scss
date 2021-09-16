@@ -1,0 +1,72 @@
+html, body {
+    height: 100%;
+  }
+   .App {
+    height:100vh;
+    width:100vw;
+    font-size: 1.5vh;
+  }
+  
+.calendar_head{
+    display: flex;
+    justify-content: center;
+    height: 5%;
+    align-items: center;
+    .calendar_button{
+        margin:5px;
+        margin-right: 10px;
+        margin-left: 10px;
+        color: white;
+        background: teal;
+        padding: .375rem .75rem;
+        border: 1px solid teal;
+        border-radius: 5px;
+    }
+    .calendar_head_text{
+        font-size: 2vw;
+    }
+}
+
+
+.calendar_body{
+    display:flex;
+    width:100%;
+    height:90%;
+    .calendar_body_box{
+        display:flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        .calendar_body_head{
+            display: flex;
+            border:1px solid gray;
+            .calendar_body_head_days{
+                border:1px solid gray;
+                width: 100%;
+                font-size:2vw;
+            }
+        }
+
+        .calendar_body_line{
+            display:flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+            .calendar_body_days{
+                display:flex;
+                flex-direction: column;
+                border:1px solid gray;
+                width: 100%;
+                height:100%;
+                text-align: initial;
+                font-size : 2vw;
+                .calendar_body_day{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+            }
+
+        }
+    }
+}
