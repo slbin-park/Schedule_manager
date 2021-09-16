@@ -87,16 +87,16 @@ function Show_event({ days }) {
 }
 
 function Modal({ setmodal }) {
-  return (
-    <div className='modal' onClick={() => {
+  const close_modal = (e) => {
+    e.preventDefault()
+    if (e.target.className === 'modal') {
       setmodal(false)
-      console.log('위에누름')
-    }}>
+    }
+  }
+  return (
+    <div className='modal' onClick={(e) => close_modal(e)} value={true}>
       <div >
-        <div className='modal_div' onClick={() => {
-          setmodal(true)
-          console.log('누름')
-        }}>
+        <div className='modal_div'>
           <div className='modal_title'>
             제목입니다.
           </div>
