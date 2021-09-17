@@ -72,6 +72,48 @@ const App = () => {
 }
 export default App;
 
+function Date_picker({ setstart }) {
+  const [getMoment, setMoment] = useState(moment());
+  const today = getMoment;
+  const firstWeek = today.clone().startOf('month').week();
+  const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
+
+  let result = [];
+  let week = firstWeek;
+  for (week; week <= lastWeek; week++) {
+    result = result.concat(
+      <div className='calendar_body_line' key={week}>
+        {
+          Array(7).fill(0).map((data, index) => {
+            let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성
+
+            if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
+              return (
+                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD'))} key={index} >
+                  <span style={{ color: 'red' }}>{days.format('D')}</span>
+                </div>
+              );
+            } else if (days.format('MM') !== today.format('MM')) {
+              return (
+                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD'))} key={index} >
+                  <span style={{ color: 'gray' }}>{days.format('D')}</span>
+                </div>
+              );
+            } else {
+              return (
+                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD'))} key={index}  >
+                  <span>{days.format('D')}</span>
+                </div>
+              );
+            }
+          })
+        }
+      </div>
+    );
+  }
+  return result;
+}
+
 function Show_event({ days }) {
   return (
     <>
@@ -87,24 +129,46 @@ function Show_event({ days }) {
 }
 
 function Modal({ setmodal }) {
+  const [x, setx] = useState(10000)
+  const [y, sety] = useState(10000)
+  const [start, setstart] = useState(moment().format('YYYYMMDD'))
   const close_modal = (e) => {
     e.preventDefault()
     if (e.target.className === 'modal') {
       setmodal(false)
     }
+    if (e.target.className != 'modal_button') {
+      setx(10000)
+      sety(10000)
+    }
+  }
+  const setxy = (e) => {
+    setx(e.clientY + 30)
+    sety(e.clientX - 20)
   }
   return (
     <div className='modal' onClick={(e) => close_modal(e)} value={true}>
       <div >
         <div className='modal_div'>
           <div className='modal_title'>
-            제목입니다.
+            일정 추가하기
+          </div>
+
+          <div className='modal_body'>
+            내용입니다.
+            <input value={start} readOnly></input>
+            <button className='modal_button' onClick={(e) => setxy(e)}>x,y위치</button>
+            <div style={{ top: x, left: y, position: 'absolute' }} className='modal_calendar'>
+              <Day_kor></Day_kor>
+              <Date_picker setstart={setstart}></Date_picker>
+            </div>
           </div>
         </div>
       </div>
     </div>
   )
 }
+
 function Day_kor() {
   return (
     <>
