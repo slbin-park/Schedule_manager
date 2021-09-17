@@ -35,14 +35,26 @@
             height: 80%;
             width: 90%;
             border: 2px solid #00C3FF;
+            .modal_button_start{
+                text-align: center;
+                margin:10px;
+                padding: 2px;
+            }        
+            .modal_button_end{
+                text-align: center;
+                margin:10px;                
+                padding: 2px;
+            }
             .modal_calendar{
                 display: flex;
                 flex-direction: column;
                 border: 2px solid #00C3FF;
+                background-color: #96FFFF;
                 border-radius: 5px;
                 padding: 5px;
                 font-size: 2vh;
                         .calendar_body_head{
+                            color : rgb(15, 15, 15);
                             display: flex;
                             .calendar_body_head_days{
                                 width: 100%;
