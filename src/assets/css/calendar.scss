@@ -52,16 +52,20 @@ html, body {
             flex-direction: row;
             width: 100%;
             height: 100%;
+            margin-bottom: 10px;
             .calendar_body_days{
                 display:flex;
                 flex-direction: column;
-                border:1px solid gray;
+                border:1px solid #96FFFF;
+                border-radius: 5px;
+                margin: 5px;
                 width: 100%;
                 height:100%;
                 text-align: initial;
                 font-size : 2vw;
+                padding: 1px;
                 .calendar_body_days_event{
-                    font-size: 15px;
+                    font-size: 13px;
                     background: gray;
                     color: white;
                     border-radius: 5px;

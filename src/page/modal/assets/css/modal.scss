@@ -11,8 +11,8 @@
     align-items: center;
     .modal_div{
         background-color: white;
-        height: 90vh;
-        width: 90vw;
+        height: 70vh;
+        width: 60vw;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -32,9 +32,14 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            height: 80%;
+            height: 60%;
             width: 90%;
             border: 2px solid #00C3FF;
+            margin: 5px;
+            .modal_body_time{
+                display: flex;
+                margin: 5px;
+            }
             .modal_button_start{
                 text-align: center;
                 margin:10px;
@@ -52,13 +57,13 @@
                 background-color: #96FFFF;
                 border-radius: 5px;
                 padding: 5px;
-                font-size: 2vh;
+                font-size: 10px;
                         .calendar_body_head{
                             color : rgb(15, 15, 15);
                             display: flex;
                             .calendar_body_head_days{
                                 width: 100%;
-                                font-size:2vw;
+                                font-size: 20px;
                             }
                         }
                         .calendar_body_line{
@@ -71,7 +76,7 @@
                                 flex-direction: column;
                                 width: 100%;
                                 height:100%;
-                                font-size : 2vw;
+                                font-size: 20px;
                                 margin:2px;
                                 padding: 1px;
                             }
@@ -84,6 +89,35 @@
                         }
             }
         }
+        .modal_footer{
+            border: 2px solid #00C3FF;
+            width: 90%;
+            margin: 5px;
+            height: 20%;
+        }
     }
 }
 
+.text_area{
+    font-size: 15px;
+    margin: 10px;
+    text-align: center;
+    width: 80%;
+    height: 20%;
+}
+
+.time_picker{
+    display: flex;
+    justify-content: center;
+    .time_picker_time{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+.modal_body_time_start{
+    background-color: #C8FFFF;
+    border-radius: 20px;
+    margin: 10px;
+}

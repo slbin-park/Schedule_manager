@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import './assets/css/modal.scss'
 
@@ -10,8 +10,11 @@ function Modal({ setmodal }) {
     const [endx, setendx] = useState(10000)
     const [endy, setendy] = useState(10000)
 
-    const [start, setstart] = useState(moment().format('YYYYMMDD'))
-    const [end, setend] = useState(moment().format('YYYYMMDD'))
+    const [start, setstart] = useState(moment().format('YYYYMMDDHHMM'))
+    // const [start_date, setstart_date] = useState(moment().format('YYYYMMDD'))
+    // const today = moment().hours('12').minutes('12')
+    const [end, setend] = useState(moment().format('YYYYMMDDHHMM'))
+    // const [end_date, setend_date] = useState(moment().format('YYYYMMDD'))
 
     const close_modal = (e) => {
         e.preventDefault()
@@ -45,29 +48,68 @@ function Modal({ setmodal }) {
                 <div className='modal_div'>
                     <div className='modal_title'>
                         일정 추가하기
+                        <button >
+                            시간바꾸기
+                        </button>
                     </div>
                     <div className='modal_body'>
-                        내용입니다.
-                        <textarea></textarea>
-                        <div onClick={(e) => show_calendar(e)} >
-                            <div>시작 일정</div>
-                            <input className='modal_button_start' value={start} readOnly></input>
-                        </div>
-                        <div style={{ top: x, left: y, position: 'absolute' }} className='modal_calendar'>
-                            <Day_kor></Day_kor>
-                            <Date_picker setstart={setstart}></Date_picker>
-                        </div>
-
-                        <div onClick={(e) => show_calendar(e)} >
-                            <div>종료 일정</div>
-                            <input className='modal_button_end' value={end} readOnly></input>
-                        </div>
-                        <div style={{ top: endx, left: endy, position: 'absolute' }} className='modal_calendar'>
-                            <Day_kor></Day_kor>
-                            <Date_picker setstart={setend}></Date_picker>
+                        일정
+                        <input type='text' className='text_area' ></input>
+                        <div className='modal_body_time'>
+                            <div className='modal_body_time_start'>
+                                <div onClick={(e) => show_calendar(e)} >
+                                    <div>시작 일정</div>
+                                    <input className='modal_button_start' value={start} readOnly></input>
+                                </div>
+                                <Time_picker start={start} setstart={setstart}></Time_picker>
+                                <div style={{ top: x, left: y, position: 'absolute' }} className='modal_calendar'>
+                                    <Day_kor></Day_kor>
+                                    <Date_picker setstart={setstart}></Date_picker>
+                                </div>
+                            </div>
+                            <div className='modal_body_time_start'>
+                                <div onClick={(e) => show_calendar(e)} >
+                                    <div>종료 일정</div>
+                                    <input className='modal_button_end' value={end} readOnly></input>
+                                </div>
+                                <Time_picker start={end} setstart={setend}></Time_picker>
+                                <div style={{ top: endx, left: endy, position: 'absolute' }} className='modal_calendar'>
+                                    <Day_kor></Day_kor>
+                                    <Date_picker setstart={setend}></Date_picker>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div className='modal_footer'>
+                        일정들입니다.
+                    </div>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+function Time_picker({ start, setstart }) {
+    const [time, settime] = useState(0)
+    const [minute, setminute] = useState(0)
+    const change_h = (e) => {
+        let time = e.target.value > 23 || e.target.value < 0 ? 23 : e.target.value
+        settime(time)
+        setstart(moment(start, 'YYYYMMDDHHmm').hours(time).format('YYYYMMDDHHmm'))
+        // 위에 moment객체는 현재 날짜 형식이 어떤지 알려줘야함
+    }
+    const change_m = (e) => {
+        let time = e.target.value > 59 || e.target.value < 0 ? 59 : e.target.value
+        setminute(time)
+        setstart(moment(start, 'YYYYMMDDHHmm').minutes(time).format('YYYYMMDDHHmm'))
+    }
+    return (
+        <div className='time_picker'>
+            <div className='time_picker_time'>
+                <input type='number' value={time} onChange={(e) => change_h(e)} min='0' max='23'></input> 시
+            </div>
+            <div className='time_picker_time'>
+                <input type='number' value={minute} onChange={(e) => change_m(e)} min='0' max='59'></input> 분
             </div>
         </div>
     )
