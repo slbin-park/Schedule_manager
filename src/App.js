@@ -78,6 +78,8 @@ function Show_event({ days }) {
     <>
       {
         pr_data.work.map((v, i) => {
+          // console.log(moment(v.start).format('YYYYMMDDHHmm'))
+          // console.log(moment(v.start).format('YYYYMMDD'))
           if (days.format('YYYYMMDD') == moment(v.start).format('YYYYMMDD')) {
             return <div key={i} onClick={() => console.log(v)} className='calendar_body_days_event'>{v.data}</div>
           }

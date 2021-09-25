@@ -1,20 +1,28 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import Axios from 'axios'
 import './assets/css/modal.scss'
 
 
 
 function Modal({ setmodal }) {
+    // 모달창 좌표
     const [x, setx] = useState(10000)
     const [y, sety] = useState(10000)
     const [endx, setendx] = useState(10000)
     const [endy, setendy] = useState(10000)
+    // 모달창 좌표 끝
 
-    const [start, setstart] = useState(moment().format('YYYYMMDDHHMM'))
-    // const [start_date, setstart_date] = useState(moment().format('YYYYMMDD'))
-    // const today = moment().hours('12').minutes('12')
-    const [end, setend] = useState(moment().format('YYYYMMDDHHMM'))
-    // const [end_date, setend_date] = useState(moment().format('YYYYMMDD'))
+    // 시간 데이터
+    const [start, setstart] = useState(moment().format('YYYYMMDD HHmm'))
+    const [end, setend] = useState(moment().format('YYYYMMDD HHmm'))
+    // 시간 데이터 끝
+
+    const [text_data, settext_data] = useState('')
+
+    // useEffect(() => {
+    //     console.log(text_data)
+    // }, [text_data])
 
     const close_modal = (e) => {
         e.preventDefault()
@@ -41,6 +49,23 @@ function Modal({ setmodal }) {
             setendy(e.clientX - 20)
         }
     }
+    const add_schedule = async () => {
+        console.log(start)
+        console.log(end)
+        console.log(text_data)
+        await Axios.post("http://localhost:8080/api/update/schedule", {
+            start: start,
+            end: end,
+            text: text_data
+        })
+            .then((response) => {
+
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+
+    }
 
     return (
         <div className='modal' onClick={(e) => close_modal(e)} value={true}>
@@ -54,7 +79,7 @@ function Modal({ setmodal }) {
                     </div>
                     <div className='modal_body'>
                         일정
-                        <input type='text' className='text_area' ></input>
+                        <input type='text' className='text_area' value={text_data} onChange={(e) => settext_data(e.target.value)}></input>
                         <div className='modal_body_time'>
                             <div className='modal_body_time_start'>
                                 <div onClick={(e) => show_calendar(e)} >
@@ -78,6 +103,7 @@ function Modal({ setmodal }) {
                                     <Date_picker setstart={setend}></Date_picker>
                                 </div>
                             </div>
+                            <button className='modal_body_add_data' onClick={add_schedule}>일정추가</button>
                         </div>
                     </div>
                     <div className='modal_footer'>
@@ -95,13 +121,13 @@ function Time_picker({ start, setstart }) {
     const change_h = (e) => {
         let time = e.target.value > 23 || e.target.value < 0 ? 23 : e.target.value
         settime(time)
-        setstart(moment(start, 'YYYYMMDDHHmm').hours(time).format('YYYYMMDDHHmm'))
+        setstart(moment(start, 'YYYYMMDD HHmm').hours(time).format('YYYYMMDD HHmm'))
         // 위에 moment객체는 현재 날짜 형식이 어떤지 알려줘야함
     }
     const change_m = (e) => {
         let time = e.target.value > 59 || e.target.value < 0 ? 59 : e.target.value
         setminute(time)
-        setstart(moment(start, 'YYYYMMDDHHmm').minutes(time).format('YYYYMMDDHHmm'))
+        setstart(moment(start, 'YYYYMMDD HHmm').minutes(time).format('YYYYMMDD HHmm'))
     }
     return (
         <div className='time_picker'>
@@ -190,4 +216,4 @@ function Day_kor() {
 }
 
 
-export default Modal;
+export default React.memo(Modal);

@@ -38,6 +38,8 @@
             margin: 5px;
             .modal_body_time{
                 display: flex;
+                align-items: center;
+                justify-content: center;
                 margin: 5px;
             }
             .modal_button_start{
@@ -49,6 +51,17 @@
                 text-align: center;
                 margin:10px;                
                 padding: 2px;
+            }
+            .modal_body_add_data{
+                cursor: pointer;
+                width: 50%;
+                height: 30%;
+                background-color: #00e1ff;
+                border:#00e1ff;
+                border-radius: 5px;
+            }
+            .modal_body_add_data:hover{
+                background-color: #96FFFF;
             }
             .modal_calendar{
                 display: flex;
