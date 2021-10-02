@@ -73,9 +73,6 @@ function Modal({ setmodal }) {
                 <div className='modal_div'>
                     <div className='modal_title'>
                         일정 추가하기
-                        <button >
-                            시간바꾸기
-                        </button>
                     </div>
                     <div className='modal_body'>
                         일정

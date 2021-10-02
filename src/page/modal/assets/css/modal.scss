@@ -1,5 +1,5 @@
 .modal{
-    color:#00A5FF;
+    color:black;
     position: fixed;
     top: 0;
     right: 0;
@@ -25,7 +25,7 @@
             font-size: 3vh;
             height: 10%;
             width: 90%;
-            border: 2px solid #00A5FF;
+            border: 2px solid #f9e000;
         }
         .modal_body{
             display: flex;
@@ -34,7 +34,7 @@
             flex-direction: column;
             height: 60%;
             width: 90%;
-            border: 2px solid #00C3FF;
+            border: 2px solid #f9e000;
             margin: 5px;
             .modal_body_time{
                 display: flex;
@@ -56,18 +56,18 @@
                 cursor: pointer;
                 width: 50%;
                 height: 30%;
-                background-color: #00e1ff;
-                border:#00e1ff;
+                background-color: #f9e000;
+                border:#f9e000;
                 border-radius: 5px;
             }
             .modal_body_add_data:hover{
-                background-color: #96FFFF;
+                background-color: #f9e000;
             }
             .modal_calendar{
                 display: flex;
                 flex-direction: column;
-                border: 2px solid #00C3FF;
-                background-color: #96FFFF;
+                border: 2px solid #f9e000;
+                background-color: #f9e000;
                 border-radius: 5px;
                 padding: 5px;
                 font-size: 10px;
@@ -96,14 +96,14 @@
                             .calendar_body_days :hover{
                                 cursor: pointer;
                                 border-radius: 5px;
-                                background-color: #00e1ff;
+                                background-color: #f9e000;
                             }
                 
                         }
             }
         }
         .modal_footer{
-            border: 2px solid #00C3FF;
+            border: 2px solid #f9e000;
             width: 90%;
             margin: 5px;
             height: 20%;
@@ -130,7 +130,7 @@
     }
 }
 .modal_body_time_start{
-    background-color: #C8FFFF;
+    background-color: #f9e000;
     border-radius: 20px;
     margin: 10px;
 }

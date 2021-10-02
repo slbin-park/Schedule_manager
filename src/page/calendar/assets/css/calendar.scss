@@ -6,20 +6,30 @@ html, body {
     width:100vw;
     font-size: 1.5vh;
   }
-  
+
+.ham{
+    cursor: pointer;
+}
+.calendar{
+    height:100vh;
+    width:100vw;
+    font-size: 1.5vh;
+}
+
 .calendar_head{
     display: flex;
     justify-content: center;
     height: 5%;
     align-items: center;
     .calendar_button{
+        cursor: pointer;
         margin:5px;
         margin-right: 10px;
         margin-left: 10px;
-        color: white;
-        background: teal;
+        color: whitesmoke;
+        background: #f9e000;
         padding: .375rem .75rem;
-        border: 1px solid teal;
+        border: 1px solid #f9e000;
         border-radius: 5px;
     }
     .calendar_head_text{
@@ -39,9 +49,11 @@ html, body {
         height: 100%;
         .calendar_body_head{
             display: flex;
-            border:1px solid gray;
             .calendar_body_head_days{
-                border:1px solid gray;
+                border:2px solid #f9e000;
+                border-radius: 5px;
+                margin: 1px;
+                padding :1px;
                 width: 100%;
                 font-size:2vw;
             }
@@ -56,7 +68,7 @@ html, body {
             .calendar_body_days{
                 display:flex;
                 flex-direction: column;
-                border:1px solid #96FFFF;
+                border:2px solid #f9e000;
                 border-radius: 5px;
                 margin: 5px;
                 width: 100%;
@@ -66,7 +78,7 @@ html, body {
                 padding: 1px;
                 .calendar_body_days_event{
                     font-size: 13px;
-                    background: gray;
+                    background: #f9e000;
                     color: white;
                     border-radius: 5px;
                     padding: 2px;
