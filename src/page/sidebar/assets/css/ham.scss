@@ -13,6 +13,7 @@
     transition: all ease 1s 0s;
 }
 .ham_button{
+    cursor: pointer;
     width: 100%;
     height: 50px;
     display: flex;
@@ -33,7 +34,6 @@
 
 
 .hamburger_click{
-
     .line{
         width: 50px;
         height: 5px;

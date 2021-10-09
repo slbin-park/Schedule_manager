@@ -5,7 +5,7 @@ import './assets/css/modal.scss'
 
 
 
-function Modal({ setmodal }) {
+function Modal({ setmodal, modal_data, setmodal_data }) {
     // 모달창 좌표
     const [x, setx] = useState(10000)
     const [y, sety] = useState(10000)
@@ -104,7 +104,12 @@ function Modal({ setmodal }) {
                         </div>
                     </div>
                     <div className='modal_footer'>
-                        일정들입니다.
+                        {
+                            modal_data.map((v) => {
+                                return <div onClick={() => console.log(v)}>{v.data}</div>
+                            }
+                            )
+                        }
                     </div>
                 </div>
             </div>
@@ -155,19 +160,19 @@ function Date_picker({ setstart }) {
 
                         if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
                             return (
-                                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD'))} key={index} >
+                                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD HHmm'))} key={index} >
                                     <span style={{ color: 'red' }}>{days.format('D')}</span>
                                 </div>
                             );
                         } else if (days.format('MM') !== today.format('MM')) {
                             return (
-                                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD'))} key={index} >
+                                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD HHmm'))} key={index} >
                                     <span style={{ color: 'gray' }}>{days.format('D')}</span>
                                 </div>
                             );
                         } else {
                             return (
-                                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD'))} key={index}  >
+                                <div className='calendar_body_days' onClick={() => setstart(days.format('YYYYMMDD HHmm'))} key={index}  >
                                     <span>{days.format('D')}</span>
                                 </div>
                             );

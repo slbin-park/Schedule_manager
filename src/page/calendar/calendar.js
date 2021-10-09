@@ -1,18 +1,21 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import pr_data from '../../data/data.json'
 import './assets/css/calendar.scss'
 import Modal from '../modal/modal'
+import Show_calendar from './Show_calendar'
 
 const App = () => {
     const [modal, setmodal] = useState(false);
+    const [modal_data, setmodal_data] = useState();
     const [getMoment, setMoment] = useState(moment());
     const today = getMoment;
-
+    useEffect(() => {
+        console.log(modal_data)
+    }, [modal_data])
     return (
         <div className="calendar">
-            {modal ? <Modal setmodal={setmodal}></Modal> : ''}
+            {modal ? <Modal setmodal={setmodal} modal_data={modal_data} setmodal_data={setmodal_data}  ></Modal> : ''}
             <div className="calendar_head">
                 <button className='calendar_button' onClick={() => { setMoment(getMoment.clone().subtract(1, 'month')) }} >이전달</button>
                 <div className='calendar_head_text'>{today.format('YYYY 년 MM 월')}</div>
@@ -22,74 +25,13 @@ const App = () => {
             <div className='calendar_body'>
                 <div className='calendar_body_box'>
                     <Day_kor />
-                    <CalendarArr today={today} />
+                    <Show_calendar modal_data={modal_data} setmodal={setmodal} setmodal_data={setmodal_data} today={today} />
                 </div>
             </div>
         </div>
     );
 }
 export default App;
-
-function CalendarArr({ today }) {
-
-
-    const firstWeek = today.clone().startOf('month').week();
-    const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
-
-    let result = [];
-    let week = firstWeek;
-    for (week; week <= lastWeek; week++) {
-        result = result.concat(
-            <div className='calendar_body_line' key={week}>
-                {
-                    Array(7).fill(0).map((data, index) => {
-                        let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성
-
-                        if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
-                            return (
-                                <div className='calendar_body_days' onClick={() => console.log(days.format('YYYYMMDD'))} key={index} >
-                                    <span style={{ color: 'red' }}>{days.format('D')}</span>
-                                    <Show_event days={days} />
-                                </div>
-                            );
-                        } else if (days.format('MM') !== today.format('MM')) {
-                            return (
-                                <div className='calendar_body_days' onClick={() => console.log(days.format('YYYYMMDD'))} key={index} >
-                                    <span style={{ color: 'gray' }}>{days.format('D')}</span>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div className='calendar_body_days' onClick={() => console.log(days.format('YYYYMMDD'))} key={index}  >
-                                    <span>{days.format('D')}</span>
-                                    <Show_event days={days} />
-                                </div>
-                            );
-                        }
-                    })
-                }
-            </div>
-        );
-    }
-    return result;
-}
-
-function Show_event({ days }) {
-    return (
-        <>
-            {
-                pr_data.work.map((v, i) => {
-                    // console.log(moment(v.start).format('YYYYMMDDHHmm'))
-                    // console.log(moment(v.start).format('YYYYMMDD'))
-                    console.log('실행')
-                    if (days.format('YYYYMMDD') == moment(v.start).format('YYYYMMDD')) {
-                        return <div key={i} onClick={() => console.log(v)} className='calendar_body_days_event'>{v.data}</div>
-                    }
-                })
-            }
-        </>
-    )
-}
 
 function Day_kor() {
     return (
