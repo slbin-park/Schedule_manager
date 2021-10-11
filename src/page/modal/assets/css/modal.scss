@@ -13,8 +13,8 @@
     .modal_div{
         border-radius: 10px;
         background-color: white;
-        height: 70vh;
-        width: 60vw;
+        height: 90vh;
+        width: 70vw;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -24,7 +24,7 @@
             align-items: center;
             justify-content: center;
             margin: 5px;
-            font-size: 3vh;
+            font-size: 2vh;
             height: 10%;
             width: 90%;
             border: 2px solid #f9e000;
@@ -109,13 +109,27 @@
             width: 90%;
             margin: 5px;
             height: 20%;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            .modal_todolist{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20%;
+                height: 20%;
+                background-color: #f9e000;
+                box-shadow: 2px 2px 2px 2px gray;
+                border-radius: 5px;
+                margin : 2%;
+            }
         }
     }
 }
 
 .text_area{
     font-size: 15px;
-    margin: 10px;
     text-align: center;
     width: 80%;
     height: 20%;

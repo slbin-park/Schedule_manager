@@ -72,10 +72,14 @@ function Modal({ setmodal, modal_data, setmodal_data }) {
             <div >
                 <div className='modal_div'>
                     <div className='modal_title'>
-                        일정 추가하기
+                        <h1>
+                            일정 추가하기
+                        </h1>
                     </div>
                     <div className='modal_body'>
-                        일정
+                        <h2>제목</h2>
+                        <input type='text' className='text_area' value={text_data} onChange={(e) => settext_data(e.target.value)}></input>
+                        <h2>내용 </h2>
                         <input type='text' className='text_area' value={text_data} onChange={(e) => settext_data(e.target.value)}></input>
                         <div className='modal_body_time'>
                             <div className='modal_body_time_start'>
@@ -105,8 +109,8 @@ function Modal({ setmodal, modal_data, setmodal_data }) {
                     </div>
                     <div className='modal_footer'>
                         {
-                            modal_data.map((v) => {
-                                return <div onClick={() => console.log(v)}>{v.data}</div>
+                            modal_data.map((v, i) => {
+                                return <div key={i} className='modal_todolist' onClick={() => console.log(v)}>{v.data}</div>
                             }
                             )
                         }

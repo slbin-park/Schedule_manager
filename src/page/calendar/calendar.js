@@ -10,9 +10,6 @@ const App = () => {
     const [modal_data, setmodal_data] = useState();
     const [getMoment, setMoment] = useState(moment());
     const today = getMoment;
-    useEffect(() => {
-        console.log(modal_data)
-    }, [modal_data])
     return (
         <div className="calendar">
             {modal ? <Modal setmodal={setmodal} modal_data={modal_data} setmodal_data={setmodal_data}  ></Modal> : ''}
@@ -20,7 +17,6 @@ const App = () => {
                 <button className='calendar_button' onClick={() => { setMoment(getMoment.clone().subtract(1, 'month')) }} >이전달</button>
                 <div className='calendar_head_text'>{today.format('YYYY 년 MM 월')}</div>
                 <button className='calendar_button' onClick={() => { setMoment(getMoment.clone().add(1, 'month')) }} >다음달</button>
-                <button onClick={() => setmodal(!modal)}>모달 온</button>
             </div>
             <div className='calendar_body'>
                 <div className='calendar_body_box'>
