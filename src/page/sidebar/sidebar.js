@@ -31,6 +31,11 @@ const Side_bar = ({ history }) => {
                             메뉴1
               </div>
                     </div>
+                    <div className='ham_menu_box'>
+                        <div className='ham_menu_text'>
+                            메뉴2
+              </div>
+                    </div>
                 </ul>
             </div>
         </div>

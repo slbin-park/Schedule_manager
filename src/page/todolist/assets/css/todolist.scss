@@ -13,6 +13,9 @@
         display: flex;
     }
     .todolist_left{
+        height: 100vh;
+        border: 1px solid gray;
+
         width: 33.3%;
         display: flex;
         flex-direction: column;
@@ -42,12 +45,20 @@
         }
     }
     .todolist_mid{
+
+        height: 100vh;
+        border: 1px solid gray;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 33.33%;
     }
     .todolist_end{
+
+        height: 100vh;
+        border: 1px solid gray;
+
         display: flex;
         flex-direction: column;
         align-items: center;

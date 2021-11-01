@@ -15,7 +15,6 @@ function CalendarArr({ today, modal_data, setmodal, setmodal_data }) {
         pr_data.work.map((v, i) => {
             if (days.format('YYYYMMDD') == moment(v.start).format('YYYYMMDD')) {
                 data_arr.push(v)
-
             }
         })
         setmodal_data(data_arr)
